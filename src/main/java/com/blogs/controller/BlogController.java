@@ -3,6 +3,7 @@ package com.blogs.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class BlogController {
 	private BlogRepository blogRepository;
 
 	@PostMapping
-	public Blog add(@RequestBody Blog blog) {
+	public Blog add(@RequestBody @Validated Blog blog) {
 		return blogRepository.save(blog);
 
 	}
@@ -33,7 +34,7 @@ public class BlogController {
 
 	}
 
-	@DeleteMapping("blogId")
+	@DeleteMapping("/blogId")
 	public void deleteById(@RequestParam String blogId) {
 		blogRepository.deleteById(blogId);
 
